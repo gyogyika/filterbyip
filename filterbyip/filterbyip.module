@@ -1,0 +1,35 @@
+<?php
+/**
+* @file
+* Filter by IP address.
+*
+*/
+
+/**
+ * Implements hook_boot().
+ */
+
+function filterbyip_boot() {
+  //backdrop_set_message(backdrop_get_css());
+  //backdrop_add_css(backdrop_get_path('module', 'ckstyles') . '/fontawesome/css/all.css');
+}
+
+function filterbyip_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'contact_site_form') {
+    $remote_ip = $_SERVER['REMOTE_ADDR'];
+    $country_code = geoip_country_code_by_name($remote_ip);
+    if ($country_code <> 'SK') {
+      //dpm('Contact form');
+      unset($form['name']);
+      unset($form['mail']);
+      unset($form['subject']);
+      unset($form['message']);
+      unset($form['copy']);
+      unset($form['message']);
+      unset($form['actions']);
+      //dpm($form);
+    }
+  }
+}
+
+

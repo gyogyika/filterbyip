@@ -1,0 +1,5 @@
+name = Filter by IP
+description = Filter by IP address.
+type = module
+backdrop = 1.x
+
