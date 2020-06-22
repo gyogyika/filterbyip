@@ -18,7 +18,7 @@ function filterbyip_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'contact_site_form') {
     $remote_ip = $_SERVER['REMOTE_ADDR'];
     $country_code = geoip_country_code_by_name($remote_ip);
-    if ($country_code <> 'SK') {
+    if (($country_code <> 'SK') or ($country_code <> 'HU')) {
       //dpm('Contact form');
       unset($form['name']);
       unset($form['mail']);
